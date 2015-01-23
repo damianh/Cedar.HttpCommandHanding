@@ -33,6 +33,19 @@ namespace Cedar.HttpCommandHandling
                     };
                     throw new HttpProblemDetailsException(problemDetails);
                 });
+            module.For<TestCommandWhoseHandlerThrowExtendedProblemDetailsException>()
+                .Handle((_, __) =>
+                {
+                    var extendedProblemDetails = new ExtendedHttpProblemDetails(HttpStatusCode.BadRequest)
+                    {
+                        Type = new Uri("http://localhost/type"),
+                        Detail = "You done goof'd",
+                        Instance = new Uri("http://localhost/errors/1"),
+                        Title = "Jimmies Ruslted",
+                        Extension = "Some more data"
+                    };
+                    throw new HttpProblemDetailsException(extendedProblemDetails);
+                });
             module.For<TestCommandWhoseHandlerThrowsExceptionThatIsConvertedToProblemDetails>()
                .Handle((_, __) => { throw new ApplicationException("Custom application exception"); });
 
@@ -79,6 +92,33 @@ namespace Cedar.HttpCommandHandling
 
     public class TestCommandWhoseHandlerThrowProblemDetailsException { }
 
+    public class TestCommandWhoseHandlerThrowExtendedProblemDetailsException {}
+
     public class TestCommandWhoseHandlerThrowsExceptionThatIsConvertedToProblemDetails { }
 
+    public class ExtendedHttpProblemDetails : HttpProblemDetails
+    {
+        public ExtendedHttpProblemDetails(HttpStatusCode status): base(status)
+        {}
+
+        public string Extension { get; set; }
+
+        public override HttpProblemDetailsDto GetDto()
+        {
+            return new ExtendedHttpProblemDetailsDto
+            {
+                Detail = Detail,
+                Status = (int)Status,
+                Instance = Instance != null ? Instance.ToString() : null,
+                Title = Title,
+                Type = Type != null ? Type.ToString() : null,
+                Extension = Extension
+            };
+        }
+    }
+
+    public class ExtendedHttpProblemDetailsDto : HttpProblemDetailsDto
+    {
+        public string Extension { get; set; }
+    }
 }

@@ -74,7 +74,7 @@
             }
         }
 
-        internal HttpProblemDetailsDto GetDto()
+        public virtual HttpProblemDetailsDto GetDto()
         {
             return new HttpProblemDetailsDto
             {

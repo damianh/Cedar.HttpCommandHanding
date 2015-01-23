@@ -71,6 +71,26 @@
         }
 
         [Fact]
+        public void When_put_command_whose_handler_throws_extended_http_problem_details_exception_then_should_throw()
+        {
+            using (var client = _fixture.CreateHttpClient())
+            {
+                Func<Task> act = () => client.PutCommand(new TestCommandWhoseHandlerThrowExtendedProblemDetailsException(), Guid.NewGuid());
+
+                var exception = act.ShouldThrow<HttpProblemDetailsException>().And;
+
+                exception.ProblemDetails.Should().NotBeNull();
+
+                dynamic problemDetails = exception.ProblemDetails;
+                ((object)problemDetails.Instance).Should().NotBeNull();
+                ((object)problemDetails.Detail).Should().NotBeNull();
+                ((object)problemDetails.Title).Should().NotBeNull();
+                ((object)problemDetails.Type).Should().NotBeNull();
+                //((object)problemDetails.Extension).Should().NotBeNull();
+            }
+        }
+
+        [Fact]
         public void When_put_command_whose_handler_throws_exception_mapped_to_http_problem_details_exception_then_should_throw()
         {
             using (var client = _fixture.CreateHttpClient())
