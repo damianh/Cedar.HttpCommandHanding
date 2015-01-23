@@ -1,6 +1,6 @@
 ﻿namespace Cedar.HttpCommandHandling
 {
-    internal class HttpProblemDetailsDto
+    public class HttpProblemDetailsDto
     {
         public int Status { get; set; }
 
