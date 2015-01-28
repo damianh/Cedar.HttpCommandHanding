@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cedar.HttpCommandHandling.Tests", "Cedar.HttpCommandHandling.Tests\Cedar.HttpCommandHandling.Tests.csproj", "{F286E287-573F-495E-804A-6278C9B7BEB8}"
 EndProject
@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cedar.HttpCommandHandling.Client", "Cedar.HttpCommandHandling.Client\Cedar.HttpCommandHandling.Client.csproj", "{772D0367-FF5A-430C-BC63-A40F5E48F247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cedar.HttpCommandHandling.Example.JavaScript", "Cedar.HttpCommandHandling.Example.JavaScript\Cedar.HttpCommandHandling.Example.JavaScript.csproj", "{D7DD6F18-6509-4D53-A616-AF0C41E8B722}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{772D0367-FF5A-430C-BC63-A40F5E48F247}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{772D0367-FF5A-430C-BC63-A40F5E48F247}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{772D0367-FF5A-430C-BC63-A40F5E48F247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7DD6F18-6509-4D53-A616-AF0C41E8B722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7DD6F18-6509-4D53-A616-AF0C41E8B722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7DD6F18-6509-4D53-A616-AF0C41E8B722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7DD6F18-6509-4D53-A616-AF0C41E8B722}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
