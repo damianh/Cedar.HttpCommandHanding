@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug-PCL\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SIMPLE_JSON_TYPEINFO, LIBLOG_PORTABLE, CEDAR_TYPEINFO</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SIMPLE_JSON_TYPEINFO, LIBLOG_PORTABLE, CEDAR_TYPEINFO, SIMPLE_JSON_INTERNAL, SIMPLE_JSON_OBJARRAYINTERNAL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug-PCL\Cedar.HttpCommandHandling.Client.xml</DocumentationFile>
@@ -30,7 +30,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release-PCL\</OutputPath>
-    <DefineConstants>TRACE;SIMPLE_JSON_TYPEINFO, LIBLOG_PORTABLE, CEDAR_TYPEINFO</DefineConstants>
+    <DefineConstants>TRACE;SIMPLE_JSON_TYPEINFO, LIBLOG_PORTABLE, CEDAR_TYPEINFO, SIMPLE_JSON_INTERNAL, SIMPLE_JSON_OBJARRAYINTERNAL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release-PCL\Cedar.HttpCommandHandling.Client.xml</DocumentationFile>

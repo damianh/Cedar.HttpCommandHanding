@@ -40,7 +40,7 @@ namespace Cedar.HttpCommandHandling.Logging
     /// <summary>
     /// Simple interface that represent a logger.
     /// </summary>
-    public interface ILog
+    internal interface ILog
     {
         /// <summary>
         /// Log a message the specified log level.
@@ -62,7 +62,7 @@ namespace Cedar.HttpCommandHandling.Logging
     /// <summary>
     /// The log level.
     /// </summary>
-    public enum LogLevel
+    internal enum LogLevel
     {
         Trace,
         Debug,
@@ -72,7 +72,7 @@ namespace Cedar.HttpCommandHandling.Logging
         Fatal
     }
 
-    public static class LogExtensions
+    internal static class LogExtensions
     {
         public static bool IsDebugEnabled(this ILog logger)
         {
@@ -325,7 +325,7 @@ namespace Cedar.HttpCommandHandling.Logging
     /// <summary>
     /// Represents a way to get a <see cref="ILog"/>
     /// </summary>
-    public interface ILogProvider
+    internal interface ILogProvider
     {
         /// <summary>
         /// Gets the specified named logger.
@@ -353,7 +353,7 @@ namespace Cedar.HttpCommandHandling.Logging
     /// <summary>
     /// Provides a mechanism to create instances of <see cref="ILog" /> objects.
     /// </summary>
-    public static class LogProvider
+    internal static class LogProvider
     {
         private static ILogProvider _currentLogProvider;
         private const string NullLoggProvider = "Current Log Provider is not set. Call SetCurrentLogProvider " +
@@ -469,7 +469,7 @@ namespace Cedar.HttpCommandHandling.Logging
             return null;
         }
 
-        public class NoOpLogger : ILog
+        internal class NoOpLogger : ILog
         {
             public bool Log(LogLevel logLevel, Func<string> messageFunc, Exception exception, params object[] formatParameters)
             {
@@ -478,7 +478,7 @@ namespace Cedar.HttpCommandHandling.Logging
         }
     }
 
-    public class LoggerExecutionWrapper : ILog
+    internal class LoggerExecutionWrapper : ILog
     {
         private readonly ILog _logger;
         public const string FailedToGenerateLogMessage = "Failed to generate log message";
@@ -528,7 +528,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
     using System.Text;
     using System.Text.RegularExpressions;
 
-    public abstract class LogProviderBase : ILogProvider
+    internal abstract class LogProviderBase : ILogProvider
     {
         protected delegate IDisposable OpenNdc(string message);
         protected delegate IDisposable OpenMdc(string key, string value);
@@ -568,7 +568,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
         }
     }
 
-    public class NLogLogProvider : LogProviderBase
+    internal class NLogLogProvider : LogProviderBase
     {
         private readonly Func<string, object> _getLoggerByNameDelegate;
         private static bool _providerIsAvailableOverride = true;
@@ -647,7 +647,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
             return Expression.Lambda<Func<string, object>>(methodCall, nameParam).Compile();
         }
 
-        public class NLogLogger : ILog
+        internal class NLogLogger : ILog
         {
             private readonly dynamic _logger;
 
@@ -787,7 +787,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
         }
     }
 
-    public class Log4NetLogProvider : LogProviderBase
+    internal class Log4NetLogProvider : LogProviderBase
     {
         private readonly Func<string, object> _getLoggerByNameDelegate;
         private static bool _providerIsAvailableOverride = true;
@@ -866,7 +866,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
             return Expression.Lambda<Func<string, object>>(methodCall, nameParam).Compile();
         }
 
-        public class Log4NetLogger : ILog
+        internal class Log4NetLogger : ILog
         {
             private readonly dynamic _logger;
 
@@ -993,7 +993,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
         }
     }
 
-    public class EntLibLogProvider : LogProviderBase
+    internal class EntLibLogProvider : LogProviderBase
     {
         private const string TypeTemplate = "Microsoft.Practices.EnterpriseLibrary.Logging.{0}, Microsoft.Practices.EnterpriseLibrary.Logging";
         private static bool _providerIsAvailableOverride = true;
@@ -1107,7 +1107,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
             return memberInit;
         }
 
-        public class EntLibLogger : ILog
+        internal class EntLibLogger : ILog
         {
             private readonly string _loggerName;
             private readonly Action<string, string, int> _writeLog;
@@ -1166,7 +1166,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
     }
 
     [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
-    public class SerilogLogProvider : LogProviderBase
+    internal class SerilogLogProvider : LogProviderBase
     {
         private readonly Func<string, object> _getLoggerByNameDelegate;
         private static bool _providerIsAvailableOverride = true;
@@ -1260,7 +1260,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
             return name => func("Name", name, false);
         }
 
-        public class SerilogLogger : ILog
+        internal class SerilogLogger : ILog
         {
             private readonly object _logger;
             private static readonly object DebugLevel;
@@ -1450,7 +1450,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
         }
     }
 
-    public class LoupeLogProvider : LogProviderBase
+    internal class LoupeLogProvider : LogProviderBase
     {
         /// <summary>
         /// The form of the Loupe Log.Write method we're using
@@ -1527,7 +1527,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
             return callDelegate;
         }
 
-        public class LoupeLogger : ILog
+        internal class LoupeLogger : ILog
         {
             private const string LogSystem = "LibLog";
 
@@ -1607,7 +1607,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
         }
     }
 
-    public class ColouredConsoleLogProvider : LogProviderBase
+    internal class ColouredConsoleLogProvider : LogProviderBase
     {
         private static readonly Type ConsoleType;
         private static readonly Type ConsoleColorType;
@@ -1723,7 +1723,7 @@ namespace Cedar.HttpCommandHandling.Logging.LogProviders
                 setForegroundExpression, colorParameter).Compile();
         }
 
-        public class ColouredConsoleLogger : ILog
+        internal class ColouredConsoleLogger : ILog
         {
             private readonly string _name;
             private readonly Action<string> _write;
