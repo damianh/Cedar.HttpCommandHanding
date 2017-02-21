@@ -17,7 +17,7 @@
 
             sendCommand({
                 commandId: "90D552BE-9259-4081-BEE0-A972D0AFAC8C",
-                commandName: "Cedar.HttpCommandHandling.TestHost.CommandThatIsAccepted",
+                commandName: "CommandThatIsAccepted",
                 value: 'Data'
             });
         };
@@ -26,7 +26,7 @@
 
             sendCommand({
                 commandId: "90D552BE-9259-4081-BEE0-A972D0AFAC8C",
-                commandName: "Cedar.HttpCommandHandling.TestHost.CommandThatThrowsProblemDetailsException"
+                commandName: "CommandThatThrowsProblemDetailsException"
             });
         };
         

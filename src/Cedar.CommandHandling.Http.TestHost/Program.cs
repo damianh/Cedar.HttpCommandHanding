@@ -16,9 +16,15 @@
         private static void Main()
         {
             var resolver = new CommandHandlerResolver(new CommandModule());
-            var settings = new CommandHandlingSettings(
-                resolver,
-                new CommandMediaTypeMap(new CommandMediaTypeWithQualifierVersionFormatter()));
+
+            var commandMediaTypeMap = new CommandMediaTypeMap(new CommandMediaTypeWithQualifierVersionFormatter())
+            {
+                { typeof(CommandThatIsAccepted).Name, typeof(CommandThatIsAccepted) },
+                { typeof(CommandThatThrowsProblemDetailsException).Name, typeof(CommandThatThrowsProblemDetailsException) }
+            };
+
+            var settings = new CommandHandlingSettings(resolver, commandMediaTypeMap);
+
             var commandHandlingMiddleware = CommandHandlingMiddleware.HandleCommands(settings);
 
             using(WebApp.Start("http://localhost:8080",
@@ -32,7 +38,7 @@
                     app.UseStaticFiles(new StaticFileOptions
                     {
                         RequestPath = new PathString("/cedarjs"),
-                        FileSystem = new PhysicalFileSystem(@"..\..\..\Cedar.HttpCommandHandling.Js")
+                        FileSystem = new PhysicalFileSystem(@"..\..\..\Cedar.CommandHandling.Http.Js")
                     });
                     app.Map("/test/commands", commandsApp => commandsApp.Use(commandHandlingMiddleware));
                 }))
