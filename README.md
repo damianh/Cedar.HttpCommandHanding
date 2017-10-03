@@ -1,4 +1,4 @@
-This project is discontinued as creating standalone dependency free middleware is not possible on netstandard/netcoreapp/aspnetcore is not possible.
+This project is discontinued as creating standalone dependency free middleware is not possible on netstandard/netcoreapp/aspnetcore.
 
 # Cedar CommandHandling
 [![NuGet Status](http://img.shields.io/nuget/v/Cedar.CommandHandling.svg?style=flat)](https://www.nuget.org/packages/Cedar.CommandHandling/)
