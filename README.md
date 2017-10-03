@@ -1,4 +1,6 @@
-# Cedar HttpCommandHandling
+This project is discontinued. 
+
+# Cedar CommandHandling
 [![NuGet Status](http://img.shields.io/nuget/v/Cedar.CommandHandling.svg?style=flat)](https://www.nuget.org/packages/Cedar.CommandHandling/)
 [![NuGet Status](http://img.shields.io/nuget/v/Cedar.CommandHandling.Http.svg?style=flat)](https://www.nuget.org/packages/Cedar.CommandHandling.Http/) 
 [![NuGet Status](http://img.shields.io/nuget/v/Cedar.CommandHandling.Http.Client.svg?style=flat)](https://www.nuget.org/packages/Cedar.CommandHandling.Http.Client/)
